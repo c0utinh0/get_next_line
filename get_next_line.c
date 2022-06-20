@@ -10,17 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "get_next_line.h"
 
 char	*get_next_line(int fd)
 {
 	int	BUFFER_SIZE;
 	int ret;
-	char	buffer[10];
+	int i;
+	static char	buffer[20];
 
-	BUFFER_SIZE = 3;
-	ret = read(fd, &buffer, 10);
-	
+	BUFFER_SIZE = 20;
+	ret = read(fd, &buffer, BUFFER_SIZE);
+	i = ft_strlen(buffer);
 	return (buffer);
 }
 
