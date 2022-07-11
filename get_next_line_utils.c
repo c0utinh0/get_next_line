@@ -6,12 +6,12 @@
 /*   By: dcoutinh <dcoutinh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 15:26:05 by dcoutinh          #+#    #+#             */
-/*   Updated: 2022/06/14 15:26:10 by dcoutinh         ###   ########.fr       */
+/*   Updated: 2022/07/11 13:45:25 by dcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
+/*
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char			*sub;
@@ -38,6 +38,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		sub[i++] = *s++;
 	return (sub);
 }
+*/
 
 size_t	ft_strlen(const char *s)
 {
@@ -48,6 +49,8 @@ size_t	ft_strlen(const char *s)
 		i++;
 	return (i);
 }
+
+/*
 
 void	*ft_calloc(size_t count, size_t size)
 {
@@ -65,4 +68,4 @@ void	*ft_calloc(size_t count, size_t size)
 		ft_bzero(ptr, count * size);
 	return (ptr);
 }
-
+*/
