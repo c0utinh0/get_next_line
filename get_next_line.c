@@ -6,7 +6,7 @@
 /*   By: dcoutinh <dcoutinh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 15:25:40 by dcoutinh          #+#    #+#             */
-/*   Updated: 2022/07/11 14:15:43 by dcoutinh         ###   ########.fr       */
+/*   Updated: 2022/07/12 09:43:39 by dcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,8 @@ char	*get_next_line(int fd)
 	if (!buffer)
 		return (NULL);
 
-	while (ret)
-	{
-		ret = read(fd, &buffer, BUFFER_SIZE);
-	}
+	ret = read(fd, buffer, BUFFER_SIZE);
+	
 	return (buffer);
 }
 
