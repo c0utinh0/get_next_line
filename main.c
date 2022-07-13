@@ -9,11 +9,11 @@ int	main(void)
 	
 	str = "line";
 	fd = open("lorem_ipsum.txt", O_RDONLY);	
-	while (*str != '\0')
-	{
+//	while (*str != '\0')
+//	{
 		str = get_next_line(fd);
 		printf("%s", str);
-	}
+//	}
 	return (0);
 }
 
