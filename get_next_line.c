@@ -6,7 +6,7 @@
 /*   By: dcoutinh <dcoutinh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 15:25:40 by dcoutinh          #+#    #+#             */
-/*   Updated: 2022/07/13 15:43:04 by dcoutinh         ###   ########.fr       */
+/*   Updated: 2022/07/13 17:02:26 by dcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define BUFFER_SIZE 5
 #endif
 
-char	*ft_getline(int fd, char *line)
+char	*ft_getline(int fd, char *buffer_line)
 {
 	ssize_t		count;
 	char		*buffer;
@@ -25,7 +25,7 @@ char	*ft_getline(int fd, char *line)
 	buffer = malloc(BUFFER_SIZE * sizeof(char) + 1);
 	if (!buffer)
 		return (NULL);
-	while((!(ft_gnl_strchr(line, '\n'))) && count != 0)
+	while((!(ft_gnl_strchr(buffer_line, '\n'))) && count != 0)
 		{
 			count = read(fd, buffer, BUFFER_SIZE);
 			if (count < 0)
@@ -33,23 +33,23 @@ char	*ft_getline(int fd, char *line)
 				free(buffer);
 				return (NULL);
 			}
-			if (!line)
-				line = ft_gnl_strdup("\0");
-			line = ft_gnl_strjoin(line, buffer);
+			if (!buffer_line)
+				buffer_line = ft_gnl_strdup("\0");
+			buffer_line = ft_gnl_strjoin(buffer_line, buffer);
 		}
 	free(buffer);
-	return (line);
+	return (buffer_line);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*line;
+	static char	*buffer_line;
 
 	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);
 
-	line = ft_getline(fd, line);
-
-	return (line);
+	buffer_line = ft_getline(fd, buffer_line);
+	
+	return (buffer_line);
 }
 
