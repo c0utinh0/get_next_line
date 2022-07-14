@@ -6,7 +6,7 @@
 /*   By: dcoutinh <dcoutinh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 15:25:40 by dcoutinh          #+#    #+#             */
-/*   Updated: 2022/07/13 17:02:26 by dcoutinh         ###   ########.fr       */
+/*   Updated: 2022/07/14 17:06:07 by dcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define BUFFER_SIZE 5
 #endif
 
-char	*ft_getline(int fd, char *buffer_line)
+static char	*ft_getline(int fd, char *buffer_line)
 {
 	ssize_t		count;
 	char		*buffer;
@@ -33,6 +33,7 @@ char	*ft_getline(int fd, char *buffer_line)
 				free(buffer);
 				return (NULL);
 			}
+			buffer[count] = '\0';
 			if (!buffer_line)
 				buffer_line = ft_gnl_strdup("\0");
 			buffer_line = ft_gnl_strjoin(buffer_line, buffer);
@@ -41,15 +42,54 @@ char	*ft_getline(int fd, char *buffer_line)
 	return (buffer_line);
 }
 
+static char	*ft_line(char	*buffer_line)
+{
+	char	*line;
+	int	i;
+
+	i = 0;
+	if (buffer_line[i] == '\0')
+		return (NULL);
+	while (buffer_line[i] != '\n' && buffer_line[i] != '\0')
+		i++;
+	if (buffer_line[i] == '\n')
+		i++;
+	line = ft_gnl_substr(buffer_line, 0, i);
+	return (line);
+}
+
+char	*ft_cut(char *buffer_line)
+{
+	char	*temp;
+	size_t	i;
+
+	i = 0;
+	while (buffer_line[i] != '\n' && buffer_line[i] != '\0')
+		i++;
+	if (buffer_line[i] == '\0')
+	{
+		free(buffer_line);
+		return (NULL);
+	}
+	if (buffer_line[i] == '\n')
+		i++;
+	temp = ft_gnl_substr(buffer_line, i, ft_gnl_strlen(buffer_line) - i);
+	free(buffer_line);
+	return (temp);
+}
+
+
 char	*get_next_line(int fd)
 {
 	static char	*buffer_line;
+	char	*line;
 
 	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);
 
 	buffer_line = ft_getline(fd, buffer_line);
-	
-	return (buffer_line);
+	line = ft_line(buffer_line);
+	buffer_line = ft_cut(buffer_line);
+	return (line);
 }
 

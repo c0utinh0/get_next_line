@@ -6,13 +6,13 @@
 /*   By: dcoutinh <dcoutinh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 15:26:05 by dcoutinh          #+#    #+#             */
-/*   Updated: 2022/07/13 15:55:40 by dcoutinh         ###   ########.fr       */
+/*   Updated: 2022/07/14 15:28:20 by dcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_gnl_substr(char const *s, unsigned int start, size_t len)
 {
 	char			*sub;
 	unsigned int	i;
@@ -47,7 +47,7 @@ size_t	ft_gnl_strlen(const char *s)
 	i = 0;
 	while (s[i])
 		i++;
-	return (++i);
+	return (i);
 }
 
 void	*ft_gnl_memcpy(void *dst, const void *src, size_t n)
@@ -85,7 +85,6 @@ char	*ft_gnl_strchr(const char *str, int c)
 			return (NULL);
 		str++;
 	}
-	str++;	
 	return ((char *)str);
 }
 
@@ -110,6 +109,7 @@ char	*ft_gnl_strjoin(char const *s1, char const *s2)
 	while (s2[j])
 		ptr[i++] = s2[j++];
 	ptr[i] = '\0';
+	free((void *) s1);
 	return (ptr);
 }
 
