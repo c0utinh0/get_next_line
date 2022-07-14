@@ -8,7 +8,7 @@ int	main(void)
 	char	*str;
 	
 	str = "line";
-	fd = open("lorem_ipsum.txt", O_RDONLY);	
+	fd = open("41_with_nl", O_RDONLY);	
 	while (str)
 	{
 		str = get_next_line(fd);

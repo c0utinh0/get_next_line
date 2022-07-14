@@ -6,11 +6,12 @@
 /*   By: dcoutinh <dcoutinh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 15:25:40 by dcoutinh          #+#    #+#             */
-/*   Updated: 2022/07/14 17:06:07 by dcoutinh         ###   ########.fr       */
+/*   Updated: 2022/07/14 19:15:14 by dcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
 #ifndef BUFFER_SIZE
 # define BUFFER_SIZE 5
@@ -22,7 +23,7 @@ static char	*ft_getline(int fd, char *buffer_line)
 	char		*buffer;
 
 	count = 1;
-	buffer = malloc(BUFFER_SIZE * sizeof(char) + 1);
+	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return (NULL);
 	while((!(ft_gnl_strchr(buffer_line, '\n'))) && count != 0)
@@ -38,6 +39,7 @@ static char	*ft_getline(int fd, char *buffer_line)
 				buffer_line = ft_gnl_strdup("\0");
 			buffer_line = ft_gnl_strjoin(buffer_line, buffer);
 		}
+	printf("ptr buffer no final > %p", buffer);
 	free(buffer);
 	return (buffer_line);
 }
@@ -45,7 +47,7 @@ static char	*ft_getline(int fd, char *buffer_line)
 static char	*ft_line(char	*buffer_line)
 {
 	char	*line;
-	int	i;
+	size_t	i;
 
 	i = 0;
 	if (buffer_line[i] == '\0')
@@ -73,7 +75,7 @@ char	*ft_cut(char *buffer_line)
 	}
 	if (buffer_line[i] == '\n')
 		i++;
-	temp = ft_gnl_substr(buffer_line, i, ft_gnl_strlen(buffer_line) - i);
+	temp = ft_gnl_substr(buffer_line, i, (ft_gnl_strlen(buffer_line) - i));
 	free(buffer_line);
 	return (temp);
 }

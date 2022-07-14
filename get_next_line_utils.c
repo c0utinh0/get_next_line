@@ -6,7 +6,7 @@
 /*   By: dcoutinh <dcoutinh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 15:26:05 by dcoutinh          #+#    #+#             */
-/*   Updated: 2022/07/14 15:28:20 by dcoutinh         ###   ########.fr       */
+/*   Updated: 2022/07/14 19:09:13 by dcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,21 @@ char	*ft_gnl_strdup(const char *s)
 {
 	char	*dst;
 	int		n;
+	int index;
 
-	n = ft_gnl_strlen((char *)s) + 1;
+	index = 0;
+//	n = ft_gnl_strlen((char *)s) + 1;
+	n = ft_gnl_strlen((char *)s);
 	dst = malloc(sizeof(char) * (n));
 	if (!dst)
 		return (NULL);
-	ft_gnl_memcpy(dst, s, n);
+//	ft_gnl_memcpy(dst, s, n);
+	while (index < n)
+	{
+		dst[index] = (char)s[index];
+		index++;
+	}
+	dst[index] = '\0';
 	return (dst);
 }
 
