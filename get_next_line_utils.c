@@ -6,7 +6,7 @@
 /*   By: dcoutinh <dcoutinh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 15:26:05 by dcoutinh          #+#    #+#             */
-/*   Updated: 2022/07/15 17:21:37 by dcoutinh         ###   ########.fr       */
+/*   Updated: 2022/07/15 17:57:20 by dcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,6 @@ char	*ft_gnl_substr(char const *s, unsigned int start, size_t len)
 	return (sub);
 }
 
-
-size_t	ft_gnl_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
 void	*ft_gnl_memcpy(void *dst, const void *src, size_t n)
 {
 	char	*m_dst;
@@ -67,7 +56,7 @@ char	*ft_gnl_strdup(const char *s)
 {
 	char	*dst;
 	int		n;
-	int i;
+	int		i;
 
 	i = 0;
 	n = ft_gnl_strlen((char *)s) + 1;
@@ -120,5 +109,3 @@ char	*ft_gnl_strjoin(char const *s1, char const *s2)
 	free((void *) s1);
 	return (ptr);
 }
-
-
