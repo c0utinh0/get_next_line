@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcoutinh <dcoutinh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 15:25:40 by dcoutinh          #+#    #+#             */
-/*   Updated: 2022/07/15 15:36:25 by dcoutinh         ###   ########.fr       */
+/*   Updated: 2022/07/15 17:31:25 by dcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*ft_getline(int fd, char *buffer_line)
 {
@@ -79,18 +79,17 @@ char	*ft_cut(char *buffer_line)
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer_line;
+	static char	*buffer_line[4096];
 	char	*line;
 
 	if (BUFFER_SIZE < 1 || fd < 0 )
 		return (NULL);
 
-	buffer_line = ft_getline(fd, buffer_line);
-	if (!buffer_line)
+	buffer_line[fd] = ft_getline(fd, buffer_line[fd]);
+	if (!buffer_line[fd])
 		return (NULL);
-	line = ft_line(buffer_line);
-	buffer_line = ft_cut(buffer_line);
-//	free(line);
+	line = ft_line(buffer_line[fd]);
+	buffer_line[fd] = ft_cut(buffer_line[fd]);
 	return (line);
 }
 

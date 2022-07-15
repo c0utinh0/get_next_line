@@ -4,16 +4,23 @@
 
 int	main(void)
 {
-	int fd, sz;
+	int fd;
 	char	*str;
-	
-	str = "line";
+
 	fd = open("41_with_nl", O_RDONLY);	
+
+	str = "linhalinha";
+//		printf("%s", get_next_line(fd));
+//		printf("%s", get_next_line(fd));
+//		printf("%s", get_next_line(fd));
+//		printf("%s", get_next_line(fd));
+
 	while (str)
 	{
 		str = get_next_line(fd);
 		printf("%s", str);
 	}
+
 	return (0);
 }
 
